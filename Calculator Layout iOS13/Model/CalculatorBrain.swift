@@ -7,3 +7,14 @@
 //
 
 import Foundation
+
+struct CalculatorBrain {
+    
+    struct Operation {
+        
+        
+    }
+    
+    //var operations: Dictionary<String, 
+    
+}
