@@ -17,11 +17,6 @@ class ViewController: UIViewController {
     var userIsTypingNumnber = false
     var doubleIsBeingTyped = false
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
-    
     @IBAction func clearButtonPressed(_ sender: UIButton) {
         equationToBeDisplayed = "0"
         equationToBeEvaluated = "0"
@@ -29,82 +24,85 @@ class ViewController: UIViewController {
     }
     
     @IBAction func numberButtonPressed(_ sender: UIButton) {
-        userIsTypingNumnber = true
-        if(equationToBeDisplayed == "0" && equationToBeEvaluated == "0")
+        if(displayLabel.text!.count < 12)
         {
-            equationToBeDisplayed = ""
-            equationToBeEvaluated = ""
+            userIsTypingNumnber = true
+            if(equationToBeDisplayed == "0" && equationToBeEvaluated == "0")
+            {
+                equationToBeDisplayed = ""
+                equationToBeEvaluated = ""
+            }
+            equationToBeDisplayed = equationToBeDisplayed + sender.currentTitle!
+            equationToBeEvaluated = equationToBeEvaluated + sender.currentTitle!
+            displayLabel.text = equationToBeDisplayed
         }
-        equationToBeDisplayed = equationToBeDisplayed + sender.currentTitle!
-        equationToBeEvaluated = equationToBeEvaluated + sender.currentTitle!
-        displayLabel.text = equationToBeDisplayed
     }
     
     
     @IBAction func decimalButtonPressed(_ sender: UIButton) {
-        doubleIsBeingTyped = true
-        equationToBeDisplayed = equationToBeDisplayed + sender.currentTitle!
-        equationToBeEvaluated = equationToBeEvaluated + sender.currentTitle!
-        displayLabel.text = equationToBeDisplayed
+        if(displayLabel.text!.count < 12)
+        {
+            if(check(in: displayLabel.text!, forAnyIn: "+-×÷") == false && check(in: displayLabel.text!, forAnyIn: ".") == true) {}
+            else
+            {
+                doubleIsBeingTyped = true
+                equationToBeDisplayed = equationToBeDisplayed + sender.currentTitle!
+                equationToBeEvaluated = equationToBeEvaluated + sender.currentTitle!
+                displayLabel.text = equationToBeDisplayed
+            }
+        }
     }
     
     @IBAction func operationButtonClicked(_ sender: UIButton) {
-        userIsTypingNumnber = false
-        if(sender.currentTitle! == "%")
+        if(displayLabel.text!.count < 12)
         {
-            //calculate percentage of result of equation and display
-            if(equationToBeDisplayed == "0" && equationToBeEvaluated == "0"){}
-            else
+            userIsTypingNumnber = false
+            if(sender.currentTitle! == "%")
+            {
+                if(equationToBeDisplayed == "0" && equationToBeEvaluated == "0"){}
+                else
+                {
+                    let result = evaluateEquation(eq: convertEquationForNS(eq: equationToBeEvaluated))
+                    let final = result/100
+                    displayLabel.text = String(final)
+                    equationToBeDisplayed = String(final)
+                    equationToBeEvaluated = String(final)
+                    doubleIsBeingTyped = true
+                }
+            }
+            else if (sender.currentTitle! == "+/-")
             {
                 let result = evaluateEquation(eq: convertEquationForNS(eq: equationToBeEvaluated))
-                print(result)
-                let final = result/100
-                print(final)
-                displayLabel.text = String(final)
-                equationToBeDisplayed = String(final)
-                equationToBeEvaluated = String(final)
-                doubleIsBeingTyped = true
-            }
-        }
-        else if (sender.currentTitle! == "+/-")
-        {
-            //calculate reverse sign of result of equation and display
-            let result = evaluateEquation(eq: convertEquationForNS(eq: equationToBeEvaluated))
-            print(result)
-            let final = 0.0-(result)
-            if(doubleIsBeingTyped == false && final.truncatingRemainder(dividingBy: 1)==0)
-            {
-                print(Int(final))
-                displayLabel.text = String(Int(final))
-                equationToBeDisplayed = String(Int(final))
-                equationToBeEvaluated = String(Int(final))
-                print(equationToBeEvaluated)
+                let final = 0.0-(result)
+                if(doubleIsBeingTyped == false && final.truncatingRemainder(dividingBy: 1)==0)
+                {
+                    displayLabel.text = String(Int(final))
+                    equationToBeDisplayed = String(Int(final))
+                    equationToBeEvaluated = String(Int(final))
+                }
+                else
+                {
+                    displayLabel.text = String(final)
+                    equationToBeDisplayed = String(final)
+                    equationToBeEvaluated = String(final)
+                    doubleIsBeingTyped = false
+                }
+            
             }
             else
             {
-                print(final)
-                displayLabel.text = String(final)
-                equationToBeDisplayed = String(final)
-                equationToBeEvaluated = String(final)
-                doubleIsBeingTyped = false
-            }
-            
-        }
-        else
-        {
                 equationToBeDisplayed = equationToBeDisplayed + sender.currentTitle!
                 displayLabel.text = equationToBeDisplayed
                 if(doubleIsBeingTyped == false)
                 {
                     equationToBeEvaluated = equationToBeEvaluated + ".0" + sender.currentTitle!
-                    //print("inside if : \(equationToBeEvaluated)")
                 }
                 else
                 {
                     equationToBeEvaluated = equationToBeEvaluated + sender.currentTitle!
-                    //print("inside else : \(equationToBeEvaluated)")
                     doubleIsBeingTyped = false;
                 }
+            }
         }
     }
     
@@ -112,27 +110,25 @@ class ViewController: UIViewController {
         if(check(in: displayLabel.text!, forAnyIn: "+-×÷") == false){}
         else
         {
-            equationToBeEvaluated = equationToBeEvaluated + ".0"
-            print(equationToBeDisplayed)
-            print(equationToBeEvaluated)
+            if(doubleIsBeingTyped == false)
+            {
+                equationToBeEvaluated = equationToBeEvaluated + ".0"
+            }
             let transformedEq = convertEquationForNS(eq: equationToBeEvaluated)
-            print(transformedEq)
             let final = evaluateEquation(eq: transformedEq)
+            print(final)
             if(doubleIsBeingTyped == false && final.truncatingRemainder(dividingBy: 1)==0)
             {
-                print(Int(final))
                 displayLabel.text = String(Int(final))
                 equationToBeDisplayed = String(Int(final))
-                equationToBeEvaluated = String(final)
             }
             else
             {
-                print(final)
                 displayLabel.text = String(final)
                 equationToBeDisplayed = String(final)
-                equationToBeEvaluated = String(final)
                 doubleIsBeingTyped = false
             }
+            equationToBeEvaluated = String(final)
         }
     }
     
