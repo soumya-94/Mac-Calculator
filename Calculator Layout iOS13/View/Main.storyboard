@@ -47,7 +47,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="operationButtonClicked:" destination="ey4-0b-agg" eventType="touchUpInside" id="9BP-aR-Geb"/>
+                                                    <action selector="operationButtonPressed:" destination="ey4-0b-agg" eventType="touchUpInside" id="9BP-aR-Geb"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9KY-Qg-57t">
@@ -58,7 +58,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="operationButtonClicked:" destination="ey4-0b-agg" eventType="touchUpInside" id="EiT-hJ-vdP"/>
+                                                    <action selector="operationButtonPressed:" destination="ey4-0b-agg" eventType="touchUpInside" id="EiT-hJ-vdP"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WU3-Qd-EEW">
@@ -80,7 +80,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="operationButtonClicked:" destination="ey4-0b-agg" eventType="touchUpInside" id="ksn-as-dao"/>
+                                                    <action selector="operationButtonPressed:" destination="ey4-0b-agg" eventType="touchUpInside" id="ksn-as-dao"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -129,7 +129,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="operationButtonClicked:" destination="ey4-0b-agg" eventType="touchUpInside" id="gbk-Y6-sjH"/>
+                                                    <action selector="operationButtonPressed:" destination="ey4-0b-agg" eventType="touchUpInside" id="gbk-Y6-sjH"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -178,7 +178,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="operationButtonClicked:" destination="ey4-0b-agg" eventType="touchUpInside" id="Mp9-yY-XBw"/>
+                                                    <action selector="operationButtonPressed:" destination="ey4-0b-agg" eventType="touchUpInside" id="Mp9-yY-XBw"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -227,7 +227,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="operationButtonClicked:" destination="ey4-0b-agg" eventType="touchUpInside" id="OJ1-io-kAe"/>
+                                                    <action selector="operationButtonPressed:" destination="ey4-0b-agg" eventType="touchUpInside" id="OJ1-io-kAe"/>
                                                 </connections>
                                             </button>
                                         </subviews>
