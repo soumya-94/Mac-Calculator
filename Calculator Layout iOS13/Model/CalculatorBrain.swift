@@ -19,7 +19,7 @@ struct CalculatorBrain {
         equationToBeEvaluated = "0"
     }
     
-    mutating func insertDigit(digit: String) -> String
+    mutating func insertDigit(_ digit: String) -> String
     {
         if(equationToBeDisplayed == "0" && equationToBeEvaluated == "0")
         {
@@ -37,7 +37,7 @@ struct CalculatorBrain {
         return !inputSet.intersection(customSet).isEmpty
     }
     
-    mutating func insertDecimal(currentDisplay: String) -> (toBeDisplayed: String, doubleCheck: Bool)
+    mutating func insertDecimal(_ currentDisplay: String) -> (toBeDisplayed: String, doubleCheck: Bool)
     {
         if(checkSubstringExistence(in: currentDisplay, forAnyIn: "+-×÷") == false && checkSubstringExistence(in: currentDisplay, forAnyIn: ".") == true)
         { return (currentDisplay, false) }
@@ -49,21 +49,16 @@ struct CalculatorBrain {
         }
     }
     
-    func prepareEquationForEval(equation: String) -> String
+    func evaluateEquation(equation: String) -> Double
     {
         let equation1 = equation.replacingOccurrences(of: "×", with: "*")
         let equation2 = equation1.replacingOccurrences(of: "÷", with: "/")
-        return equation2
-    }
-    
-    func evaluateEquation(equation: String) -> Double
-    {
-        let mathExpression = NSExpression(format: prepareEquationForEval(equation: equationToBeEvaluated))
+        let mathExpression = NSExpression(format: equation2)
         let mathValue = mathExpression.expressionValue(with: nil, context: nil) as? Double
         return mathValue!
     }
     
-    mutating func insertOperand(operand: String, decimalCheck: Bool) -> (toBeDisplayed: String, doubleCheck: Bool)
+    mutating func insertOperand(_ operand: String, _ decimalCheck: Bool) -> (toBeDisplayed: String, doubleCheck: Bool)
     {
         if(operand == "%")
         {
@@ -110,7 +105,7 @@ struct CalculatorBrain {
         }
     }
     
-    mutating func calculate(currentDisplay: String, decimalCheck: Bool) -> (toBeDisplayed: String, doubleCheck: Bool)
+    mutating func calculate(_ currentDisplay: String, _ decimalCheck: Bool) -> (toBeDisplayed: String, doubleCheck: Bool)
     {
         if(checkSubstringExistence(in: currentDisplay, forAnyIn: "+-×÷") == false)
         { return (currentDisplay, decimalCheck) }

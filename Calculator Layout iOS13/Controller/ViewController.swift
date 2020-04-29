@@ -12,7 +12,6 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var displayLabel: UILabel!
     
-    var userIsTypingNumnber = false
     var doubleIsBeingTyped = false
     
     var brain = CalculatorBrain()
@@ -25,31 +24,30 @@ class ViewController: UIViewController {
     @IBAction func numberButtonPressed(_ sender: UIButton) {
         if(displayLabel.text!.count < 12)
         {
-            userIsTypingNumnber = true
-            displayLabel.text = brain.insertDigit(digit: sender.currentTitle!)
+            displayLabel.text = brain.insertDigit(sender.currentTitle!)
         }
     }
     
     @IBAction func decimalButtonPressed(_ sender: UIButton) {
         if(displayLabel.text!.count < 12)
         {
-            let newDisplay = brain.insertDecimal(currentDisplay: displayLabel.text!)
+            let newDisplay = brain.insertDecimal(displayLabel.text!)
             displayLabel.text = newDisplay.toBeDisplayed
             doubleIsBeingTyped = newDisplay.doubleCheck
         }
     }
     
-    @IBAction func operationButtonClicked(_ sender: UIButton) {
+    @IBAction func operationButtonPressed(_ sender: UIButton) {
         if(displayLabel.text!.count < 12)
         {
-            let newDisplay = brain.insertOperand(operand: sender.currentTitle!, decimalCheck: doubleIsBeingTyped)
+            let newDisplay = brain.insertOperand(sender.currentTitle!, doubleIsBeingTyped)
             displayLabel.text = newDisplay.toBeDisplayed
             doubleIsBeingTyped = newDisplay.doubleCheck
         }
     }
     
     @IBAction func equalsButtonPressed(_ sender: UIButton) {
-        let resultant = brain.calculate(currentDisplay: displayLabel.text!, decimalCheck: doubleIsBeingTyped)
+        let resultant = brain.calculate(displayLabel.text!, doubleIsBeingTyped)
         displayLabel.text = resultant.toBeDisplayed
         doubleIsBeingTyped = resultant.doubleCheck
     }
